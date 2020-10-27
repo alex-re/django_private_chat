@@ -1,5 +1,7 @@
-#Django Private Chat
+# Django Private Chat
 
 #### A simple django private chat built with django channels.
 
-######(TODOs will be in the body of my code 😉)
+##### Don't forget start redis server `sudo service redis-server start`!
+
+###### (TODOs will be in the body of my code 😉)
