@@ -4,4 +4,8 @@
 
 ##### Don't forget start redis server `sudo service redis-server start`!
 
-###### (TODOs will be in the body of my code 😉)
+###### (TODOs will be in the body of my code 😉 too)
+
+- [] async chat
+- [] add react
+- [] more clean codes 😎
