@@ -126,13 +126,12 @@
 
     chatSocket.onmessage = function(e) {
         var data = JSON.parse(e.data);
-        console.log(data);
+        // console.log(data);
         if (data['command'] === 'messages') {
           for (let i=0; i<data['messages'].length; i++) {
             createMessage(data['messages'][i]);
           }
         } else if (data['command'] === 'new_message'){
-          console.log('data[command] === new_message!!!!!');
           createMessage(data['message']);
         }
     };
@@ -176,8 +175,6 @@
       } else {
         msgListTag.className = 'replies';
       }
-      console.log(msgListTag.className)
-      console.log(pTag.textContent)
 
       msgListTag.appendChild(imgTag);
       msgListTag.appendChild(pTag);
