@@ -6,6 +6,6 @@
 
 ###### (TODOs will be in the body of my code 😉 too)
 
-- [] async chat
-- [] add react
-- [] more clean codes 😎
+- - [ ] async chat (I deleted it by mistake 😬)
+- - [ ] add react
+- - [ ] more clean codes 😎
