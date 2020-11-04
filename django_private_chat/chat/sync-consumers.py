@@ -82,6 +82,7 @@ class ChatConsumer(WebsocketConsumer):
         data = json.loads(text_data)
         # self.commands[data['command']](self, data)
         # Checking if function exists.
+        # if data['command'] in self.commands: self.commands[data['command']](self, data)
         command = data.get('command', None)
         if command == 'fetch_messages':
             self.fetch_messages(data)
