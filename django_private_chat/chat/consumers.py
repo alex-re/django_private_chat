@@ -1,4 +1,4 @@
-# A async-chat-consumers with first method(DJANGO_ALLOW_ASYNC_UNSAFE=True).
+# A async-chat-consumers with first method(DJANGO_ALLOW_ASYNC_UNSAFE=True). 
 
 import json
 from channels.generic.websocket import AsyncWebsocketConsumer
