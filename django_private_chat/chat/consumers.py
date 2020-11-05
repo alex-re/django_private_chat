@@ -11,6 +11,7 @@ from django.db.models import Q
 
 class ChatConsumer(AsyncWebsocketConsumer):
     async def new_message(self, data):
+        # print(self) <chat.consumers.ChatConsumer object at 0x7fb8bca17460>
         sender = data['from']
         # if sender != self.scope['user'].username: return HttpResponse('Send message from your self!')
         sender_user = await self.get_user_by_username(username=sender)
@@ -19,13 +20,15 @@ class ChatConsumer(AsyncWebsocketConsumer):
         serialized_message = await self.create_message(sender=sender_user, text=data['message'], dialog=dialog)
         content = {
             'command': 'new_message',
-            'message': message
+            'message': serialized_message
         }
-        return await self.send_chat_message(serialized_message)
+        # print(serialized_message)  # {'sender': 'ali', 'content': 'as', 'timestamp': '2020-11-05 16:04:11.995768+00:00'}
+        # return await self.send_chat_message(serialized_message)
+        return await self.send_chat_message(content)
 
 
     async def fetch_messages(self, data):
-        opponent_user = await self.get_user_by_username(username=self.room_name)
+        opponent_user = await self.get_user_by_username(username=self.scope['url_route']['kwargs']['room_name'])
         dialog = await self.get_dialog_by_users(user1=self.scope['user'], user2=opponent_user)
         serialized_messages = await self.get_messages_by_dialog(dialog=dialog)
         content = {
@@ -80,6 +83,7 @@ class ChatConsumer(AsyncWebsocketConsumer):
     # Receive message from room group
     async def chat_message(self, event):
         message = event['message']
+        # print(message) {'sender': 'ali', 'content': 'gholiiiiiiiiiiiiiiiiii', 'timestamp': '2020-11-05 16:25:56.083752+00:00'}
         await self.send(text_data=json.dumps(message))
         # await self.send(text_data=json.dumps({
         #     'message': message

@@ -126,7 +126,6 @@
 
     chatSocket.onmessage = function(e) {
         var data = JSON.parse(e.data);
-        // console.log(data);
         if (data['command'] === 'messages') {
           for (let i=0; i<data['messages'].length; i++) {
             createMessage(data['messages'][i]);
@@ -169,7 +168,6 @@
       var pTag = document.createElement('p');
       pTag.textContent = data.content;
       imgTag.src = 'http://emilcarlsson.se/assets/mikeross.png';
-      
       if (sender === username) {
         msgListTag.className = 'sent';
       } else {
