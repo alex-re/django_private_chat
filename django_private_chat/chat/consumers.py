@@ -4,6 +4,7 @@ Async-chat-consumers with first method(DJANGO_ALLOW_ASYNC_UNSAFE=True).
 import json
 from channels.generic.websocket import AsyncWebsocketConsumer
 from channels.db import database_sync_to_async
+# from asgiref.sync import sync_to_async
 from django.contrib.auth.models import User
 from django.shortcuts import get_object_or_404
 from .models import Dialog, Message
@@ -115,7 +116,7 @@ def get_messages_by_dialog(dialog):
             'content': message.text,
             'timestamp': str(message.timestamp)
         })
-        return result
+    return result
 
 
 @database_sync_to_async
@@ -126,3 +127,34 @@ def create_message(sender, text, dialog):
     return {'sender': message.sender.username,
             'content': message.text,
             'timestamp': str(message.timestamp)}
+
+
+# @sync_to_async
+# def get_user_by_username(username):
+#     return User.objects.get(username=username)
+
+# @sync_to_async
+# def get_dialog_by_users(user1, user2):
+#     return Dialog.objects.filter(Q(owner=user1, opponent=user2) | Q(opponent=user1, owner=user2)).first()
+
+# @sync_to_async
+# def get_messages_by_dialog(dialog):
+#     messages = Message.objects.filter(
+#         dialog=dialog).order_by('timestamp').all()[:10]
+#     result = []
+#     for message in messages:
+#         result.append({
+#             'sender': message.sender.username,
+#             'content': message.text,
+#             'timestamp': str(message.timestamp)
+#         })
+#         return result
+
+# @sync_to_async
+# def create_message(sender, text, dialog):
+#     message = Message.objects.create(
+#         sender=sender, text=text, dialog=dialog)
+#     # Or we can send parameters to return from args given.
+#     return {'sender': message.sender.username,
+#             'content': message.text,
+#             'timestamp': str(message.timestamp)}
