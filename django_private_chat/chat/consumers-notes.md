@@ -2,6 +2,7 @@
 # Three ways for async chat consumers:
 1. set **DJANGO_ALLOW_ASYNC_UNSAFE** environment variable **True**.
  mac & linux 😎 `export DJANGO_ALLOW_ASYNC_UNSAFE=True`.
+###### (Just this item work for async channels)
 ___
 2. 
 ```py
